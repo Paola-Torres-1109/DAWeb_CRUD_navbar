@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block cuerpo %}
+  <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+      <h1>Registrar Cliente</h1>
+      <div class="card"><!--La tarjeta-->
+        <div class="card-body">
+          <form action="registrarClientes/" method="POST">{% csrf_token %}<!--Falta action-->
+            <div class="form-group">
+                <input type="text" id="txtcliente" name="txtcliente" class="form-control"
+                placeholder="Id Cliente" minlength="1" maxLenght="6" required><br>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                placeholder="Nombre Cliente" maxLenght="100" required><br>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="telefono" name="telefono" class="form-control"
+              min="1" max="10" placeholder="Telefono/Celular" required><br>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+              placeholder="Correo Electronico" maxLenght="100" required><br>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+              placeholder="Fecha de Nacimiento" maxLenght="100" required><br>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txthistorial_c" name="txthistorial_c" class="form-control"
+              placeholder="Historial Crediticio" maxLenght="100" required><br>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="txtdomicilio" name="txtdomicilio" class="form-control"
+                placeholder="Domicilio" maxLenght="100" required><br>
+            </div>
+
+            <div class="form-group py-3">
+              <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+            </div>
+          </form>
+        </div>
+      </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de Clientes</h1>
+    <img class="w-50" src="{% static 'img/clientes.png' %} " alt="pao" width="100" height="200">
+    <!--La tabla-->
+    <table class="table table-striped">                            
+      <thead>
+        <tr>
+          <th scope="col">id Cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Fecha nac.</th>
+          <th scope="col">Historial Crediticio</th>
+          <th scope="col">Domicilio</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in misclientes %}
+          <tr>
+            <td>{{i.id_cliente}}</td>
+            <td>{{i.nombre}}</td>
+            <td>{{i.telefono}}</td>
+            <td>{{i.correo}}</td>
+            <td>{{i.fecha_n | date:'d-m-y'}}</td>
+            <td>{{i.historial_c}}</td>
+            <td> <a href="seleccionarClientes/{{i.id_cliente}}" class="btn btn-info">Editar</a></td><!--falta-->
+            <td> <a href="borrarClientes/{{i.id_cliente}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!--La tabla-->
+  </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}

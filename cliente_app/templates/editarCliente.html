@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Cliente</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+                <form action="/editarClientes/" method="POST">{% csrf_token %}<!--Falta action-->
+                    <div class="form-group">
+                        <input type="text" id="txtcliente" name="txtcliente" class="form-control"
+                        placeholder="Id Cliente" value="{{misclientes.id_cliente}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="Nombre Cliente" value="{{misclientes.nombre}}"maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" id="telefono" name="telefono" class="form-control"
+                        min="1" max="10" placeholder="Telefono/Celular" value="{{misclientes.telefono}}" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+                        placeholder="Correo Electronico" value="{{misclientes.correo}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="date" id="txtfecha" name="txtfecha" class="form-control"
+                        placeholder="Fecha de Nacimiento" value="{{misclientes.fecha_n}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txthistorial_c" name="txthistorial_c" class="form-control"
+                        placeholder="Historial Crediticio" value="{{misclientes.historial_c}}"maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" id="txtdomicilio" name="txtdomicilio" class="form-control"
+                        placeholder="Domicilio" value="{{misclientes.domicilio}}"maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}
