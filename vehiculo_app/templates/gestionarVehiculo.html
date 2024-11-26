@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block cuerpo %}
+    <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+        <h1>Registrar Vehiculo</h1>
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+            <form action="registrarVehiculo/" method="POST">{% csrf_token %}<!--Falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtcodigo_v" name="txtcodigo_v" class="form-control"
+                    placeholder="Id Vehiculo" minlength="1" maxLenght="6" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtmarca" name="txtmarca" class="form-control"
+                    placeholder="Marca" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtmodelo" name="txtmodelo" class="form-control"
+                    placeholder="Modelo" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtaño" name="txtaño" class="form-control"
+                    placeholder="Año" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtestado_v" name="txtestado_v" class="form-control"
+                    placeholder="Estado del Vehiculo" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtkilometraje" name="txtkilometraje" class="form-control"
+                    placeholder="Kilometraje" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-primary">Guardar Vehiculo</button>
+                </div>
+            </form>
+            </div>
+        </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+    <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de Vehiculos</h1>
+    <img class="w-50" src="{% static 'img/vehiculos.png' %} " alt="pao" width="100" height="200">
+    <!--La tabla-->
+    <table class="table table-striped">                            
+        <thead>
+            <tr>
+                <th scope="col">id Vehiculo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Año</th>
+                <th scope="col">Estado (nuevo, seminuevo)</th>
+                <th scope="col">Precio</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in micarro %}
+            <tr>
+                <td>{{i.id_vehiculo}}</td>
+                <td>{{i.marca}}</td>
+                <td>{{i.modelo}}</td>
+                <td>{{i.año}}</td>
+                <td>{{i.estado}}</td>
+                <td>{{i.kilometraje}}</td>
+                <td> <a href="seleccionarVehiculo/{{i.id_vehiculo}}" class="btn btn-info">Editar</a></td><!--falta-->
+                <td> <a href="borrarVehiculo/{{i.id_vehiculo}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--La tabla-->
+    </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}

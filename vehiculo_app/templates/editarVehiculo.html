@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Vehiculo</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+            <form action="/editarVehiculo/" method="POST">{% csrf_token %}<!--Falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtcodigo_v" name="txtcodigo_v" class="form-control"
+                    placeholder="Id Vehiculo"  value="{{micarro.id_vehiculo}}"minlength="1" maxLenght="6" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtmarca" name="txtmarca" class="form-control"
+                    placeholder="Marca" value="{{micarro.marca}}" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtmodelo" name="txtmodelo" class="form-control"
+                    placeholder="Modelo" value="{{micarro.modelo}}" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtaño" name="txtaño" class="form-control"
+                    placeholder="Año" value="{{micarro.año}}" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtestado_v" name="txtestado_v" class="form-control"
+                    placeholder="Estado del Vehiculo" value="{{micarro.estado}}" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtkilometraje" name="txtkilometraje" class="form-control"
+                    placeholder="Kilometraje" value="{{micarro.kilometraje}}" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-primary">Guardar Vehiculo</button>
+                </div>
+            </form>
+            </div>
+        </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}
