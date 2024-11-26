@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Vehiculo</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--La tarjeta-->
+            <div class="card"><!--La tarjeta-->
+                <div class="card-body">
+                <form action="/editarProveedor/" method="POST">{% csrf_token %}<!--Falta action-->
+                    <div class="form-group">
+                        <input type="text" id="txtproveedor" name="txtproveedor" class="form-control"
+                        placeholder="Id Proveedor" value="{{misproveedores.id_proveedor}}" minlength="1" maxLenght="6" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="Nombre" value="{{misproveedores.nombre}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        placeholder="Direccion" value="{{misproveedores.direccion}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                        placeholder="Telefono/Celular" value="{{misproveedores.telefono}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtrepresentante" name="txtrepresentante" class="form-control"
+                        placeholder="Representante" value="{{misproveedores.representante}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txttipo_pago" name="txttipo_pago" class="form-control"
+                        placeholder="Tipo de Pago" value="{{misproveedores.tipo_pago}}" maxLenght="100" required><br>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+                    </div>
+                </form>
+                </div>
+            </div><!--La tarjeta-->
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- fila en editar -->
+
+
+
+
+{% endblock %}
