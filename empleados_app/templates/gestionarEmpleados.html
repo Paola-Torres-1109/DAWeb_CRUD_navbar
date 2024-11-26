@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block cuerpo %}
+    <div class="row"><!--la fila-->
+
+    <div class= "col-sm-12 col-md-4 col-lg-4 xl-4"><!--Columna izquierda-->
+        <h1>Registrar Empleado</h1>
+        <div class="card"><!--La tarjeta-->
+            <div class="card-body">
+            <form action="registrarEmpleado/" method="POST">{% csrf_token %}<!--Falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtempleado" name="txtempleado" class="form-control"
+                    placeholder="Id Empleado" minlength="1" maxLenght="6" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    placeholder="Nombre" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtcargo" name="txtcargo" class="form-control"
+                    placeholder="Cargo" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="Integer" id="txtsalario" name="txtsalario" class="form-control"
+                    placeholder="Salario" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtturno" name="txtturno" class="form-control"
+                    placeholder="Turno" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtdepartamento" name="txtdepartamento" class="form-control"
+                    placeholder="Departamento" maxLenght="100" required><br>
+                </div>
+
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+                </div>
+            </form>
+            </div>
+        </div><!--La tarjeta-->
+    </div><!--Columna izquierda-->
+
+
+    <div class="col-sm-12 col-md-8 col-lg-8 xl-8"><!--Columna derecha-->
+    <h1>Listado de Empleados</h1>
+    <img class="w-50" src="{% static 'img/empleados.jpg' %} " alt="pao" width="100" height="200">
+    <!--La tabla-->
+    <table class="table table-striped">                            
+        <thead>
+            <tr>
+                <th scope="col">id Empleado</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Salario</th>
+                <th scope="col">Turno</th>
+                <th scope="col">Departamento</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in misempleados %}
+            <tr>
+                <td>{{i.id_empleado}}</td>
+                <td>{{i.nombre}}</td>
+                <td>{{i.cargo}}</td>
+                <td>{{i.salario}}</td>
+                <td>{{i.turno}}</td>
+                <td>{{i.departamento}}</td>
+                <td> <a href="seleccionarEmpleado/{{i.id_empleado}}" class="btn btn-info">Editar</a></td><!--falta-->
+                <td> <a href="borrarEmpleado/{{i.id_empleado}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--La tabla-->
+    </div><!--Columna derecha-->
+</div><!--la fila-->
+{% endblock %}
